@@ -25,7 +25,7 @@ function AppContent() {
   // 📝 HOOK 1: useState - Para manejar estado local
   const [contador, setContador] = useState(0);
   const [nombre, setNombre] = useState('');
-  
+  const [apellido, setApellido] = useState('');
   // 📝 HOOK 2: useRef - Para referenciar elementos del DOM
   const inputRef = useRef(null);
   
@@ -102,11 +102,19 @@ function AppContent() {
             onChange={(e) => setNombre(e.target.value)}
             placeholder="Tu nombre aquí..."
           />
+          <label htmlFor="apellido">Escribe tu apellido:</label>
+          <input
+            id="apellido"
+            type="text"
+            value={apellido}
+            onChange={(e) => setApellido(e.target.value)}
+            placeholder="Tu apellido aquí..."
+          />
         </div>
-        {nombre && (
+        {(nombre ||apellido) && (
           <div className="greeting">
-            <p>¡Hola <strong>{nombre}</strong>! 👋</p>
-            <p>Tu nombre tiene {nombre.length} caracteres.</p>
+            <p>¡Hola <strong>{nombre}</strong> <strong>{apellido}</strong>! 👋</p>
+            <p>Tu nombre y tu apellido tienen {nombre.length + apellido.length} caracteres</p>
           </div>
         )}
       </section>
